@@ -340,7 +340,7 @@ class Post(db.Model):
         """
         def format_context(ctx):
             if ctx.title and ctx.author_name:
-                return '“{}” by {}'.format(ctx.title, ctx.author_name)
+                return '"{}" by {}'.format(ctx.title, ctx.author_name)
             if ctx.title:
                 return ctx.title
             if ctx.author_name:
