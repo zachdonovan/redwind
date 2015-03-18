@@ -368,6 +368,8 @@ def render_post(post):
 
 
 def discover_endpoints(me):
+    if me == get_settings().site_url:
+        return (None, None, None)
     me_response = requests.get(me)
     if me_response.status_code != 200:
         excp = Exception("Unexpected response")
@@ -403,7 +405,6 @@ def login():
         return make_response('Missing "me" parameter', 400)
     if not me.startswith('http://') and not me.startswith('https://'):
         me = 'http://' + me
-        app.logger.debug("reached last jumping off point before point of failure, me is: %s"%me)
     auth_url, token_url, micropub_url = discover_endpoints(me)
     if not auth_url:
         auth_url = 'https://indieauth.com/auth'
