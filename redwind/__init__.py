@@ -9,12 +9,14 @@ from flask.ext.login import LoginManager
 from flask.ext.themes2 import Themes
 
 from werkzeug.datastructures import ImmutableDict
+from werkzeug.contrib.fixers import ProxyFix
 from logging import FileHandler
 from config import Configuration
 import logging
 
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 app.config.from_object(Configuration)
 
 app.jinja_env.trim_blocks = True
