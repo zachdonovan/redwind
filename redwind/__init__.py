@@ -9,7 +9,7 @@ from flask.ext.login import LoginManager
 from flask.ext.themes2 import Themes
 
 from werkzeug.datastructures import ImmutableDict
-from logging import StreamHandler
+from logging import FileHandler
 from config import Configuration
 import logging
 
@@ -41,7 +41,7 @@ if app.config.get('PROFILE'):
 # logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 if not app.debug:
     app.logger.setLevel(logging.DEBUG)
-    stream_handler = StreamHandler()
+    stream_handler = FileHandler("/var/log/gunicorn/redwind.log")
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     stream_handler.setFormatter(formatter)
