@@ -18,7 +18,7 @@ class Configuration(object):
     PYGMENTS_STYLE = 'tango'
 
     # schema to contact DB
-    SQLALCHEMY_DATABASE_URI = 'sqlite://srv/redwind/test.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:////srv/redwind/test.db'
     # SQLALCHEMY_DATABASE_URI = 'postgres://redwind'
 
     # base url for pilbox requests (handles image proxy/resize)
