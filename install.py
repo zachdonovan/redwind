@@ -9,12 +9,12 @@ print('done creating database tables')
 print('setting default settings')
 
 defaults = [
-    ('Author Name',                ''),
+    ('Author Name',                'Zach Donovan'),
     ('Author Image',               ''),
-    ('Author Domain',              ''),
-    ('Author Bio',                 ''),
-    ('Site Title',                 ''),
-    ('Site URL',                   ''),
+    ('Author Domain',              'zachdonovan.net'),
+    ('Author Bio',                 'Writer & Software Engineer'),
+    ('Site Title',                 'Title TK'),
+    ('Site URL',                   'https://zachdonovan.net'),
     ('Shortener URL',              None),
     ('Push Hub',                   ''),
     ('Posts Per Page',             15),
@@ -28,7 +28,7 @@ defaults = [
     ('PGP Key URL',                ''),
     ('Avatar Prefix',              'nobody'),
     ('Avatar Suffix',              'png'),
-    ('Timezone',                   'America/Los_Angeles'),
+    ('Timezone',                   'America/New_York'),
 ]
 
 for name, default in defaults:
