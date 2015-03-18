@@ -370,8 +370,10 @@ def render_post(post):
 def discover_endpoints(me):
     me_response = requests.get(me)
     if me_response.status_code != 200:
-        return make_response(
+        excp = Exception("Unexpected response")
+        excp.response = make_response(
             'Unexpected response from URL: {}'.format(me_response), 400)
+        raise excp
     soup = bs4.BeautifulSoup(me_response.text)
     auth_endpoint = soup.find('link', {'rel': 'authorization_endpoint'})
     token_endpoint = soup.find('link', {'rel': 'token_endpoint'})
@@ -401,7 +403,10 @@ def login():
         return make_response('Missing "me" parameter', 400)
     if not me.startswith('http://') and not me.startswith('https://'):
         me = 'http://' + me
-    auth_url, token_url, micropub_url = discover_endpoints(me)
+    try:
+        auth_url, token_url, micropub_url = discover_endpoints(me)
+    except Exception as e:
+        return e.response
     if not auth_url:
         auth_url = 'https://indieauth.com/auth'
 
