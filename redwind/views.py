@@ -403,6 +403,7 @@ def login():
         return make_response('Missing "me" parameter', 400)
     if not me.startswith('http://') and not me.startswith('https://'):
         me = 'http://' + me
+        app.logger.debug("reached last jumping off point before point of failure, me is: %s"%me)
     auth_url, token_url, micropub_url = discover_endpoints(me)
     if not auth_url:
         auth_url = 'https://indieauth.com/auth'
