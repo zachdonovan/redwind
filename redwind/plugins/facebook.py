@@ -231,7 +231,7 @@ def handle_new_or_edit(post, preview, img_url, post_type,
     try:
         response.raise_for_status()
     except Exception as e:
-        app.logger.debug("Got non-200 response from facebook %s", e.headers)
+        app.logger.debug("Got non-200 response from facebook %s", response.headers)
     app.logger.debug("Got response from facebook %s", response)
 
     if 'json' in response.headers['content-type']:
