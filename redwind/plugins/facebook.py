@@ -24,7 +24,7 @@ def register():
 def authorize_facebook():
     import urllib.parse
     import urllib.request
-    redirect_uri = url_for('authorize_facebook', _external=True)
+    redirect_uri = "https://zachdonovan.net/authorize_facebook"
     params = {
         'client_id': get_settings().facebook_app_id,
         'redirect_uri': redirect_uri,
