@@ -36,11 +36,13 @@ def authorize_facebook():
         params['code'] = code
         params['client_secret'] = get_settings().facebook_app_secret
 
-        app.logger.debug('query string settings for facebook oauth: {} '.format(urllib.parse.urlencode(params)))
-        r = urllib.request.urlopen(
-            'https://graph.facebook.com/oauth/access_token?'
-            + urllib.parse.urlencode(params))
-        payload = urllib.parse.parse_qs(r.read())
+        try:
+            r = urllib.request.urlopen(
+                'https://graph.facebook.com/oauth/access_token?'
+                + urllib.parse.urlencode(params))
+            payload = urllib.parse.parse_qs(r.read())
+        except Exception as e:
+            app.logger.debug(e.hdrs)
 
         access_token = payload[b'access_token'][0].decode('ascii')
         Setting.query.get('facebook_access_token').value = access_token
