@@ -368,6 +368,8 @@ def render_post(post):
 
 
 def discover_endpoints(me):
+    if me == get_settings().site_url:
+        return (None, None, None)
     me_response = requests.get(me)
     if me_response.status_code != 200:
         excp = Exception("Unexpected response")
