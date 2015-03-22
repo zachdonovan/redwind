@@ -36,7 +36,7 @@ class SqlQueueImpl:
         with app.app_context():
             while True:
                 for job in Job.query.filter_by(complete=False):
-		    result = None
+                    result = None
                     try:
                         func, args, kwargs = job.params
                         result = func(*args, **kwargs)
