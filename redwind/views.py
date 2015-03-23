@@ -212,7 +212,12 @@ def tag_cloud():
         {"name": name, "count": tagdict[name]}
         for name in sorted(tagdict)
     ]
-    return render_tags("Tags", tags)
+
+    if tags:
+        return render_tags("Tags", tags)
+    else:
+        flash('not enough tags, sorry!')
+        return redirect('everything')
 
 
 @app.route('/tags/<tag>')
