@@ -120,7 +120,8 @@ MIN_TAG_COUNT = 2
 
 def render_tags(title, tags):
     counts = [tag['count'] for tag in tags]
-    mincount, maxcount = min(counts), max(counts)
+    if counts:
+        mincount, maxcount = min(counts), max(counts)
     for tag in tags:
         if maxcount > mincount:
             tag['size'] = (MIN_TAG_SIZE +
